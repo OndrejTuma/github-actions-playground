@@ -1,0 +1,16 @@
+name: Matrix
+on: push
+
+jobs:
+  node_version:
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        node_version: [6, 8, 10]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+      - name: Log node version
+        run: node -v
